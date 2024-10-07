@@ -21,6 +21,33 @@ function updateImage(playerType, computerType) {
     computerImage.src = `static/${computerType}.png`;
 }
 
+function checkEndGame(playerScore, computerScore) {
+    if (playerScore === 5) {
+        winGame();
+    }
+    else if (computerScore === 5) {
+        loseGame();
+    }
+}
+
+function winGame() {
+    const player = document.querySelector(".player");
+    player.remove();
+    const div = document.createElement("div");
+    div.textContent = "You won!";
+    div.setAttribute("style", "background-color: #379634; color: white; text-align: center; padding: 8px; font-weight: 900; font-size: 24px;");
+    document.body.appendChild(div);
+}
+
+function loseGame() {
+    const player = document.querySelector(".player");
+    player.remove();
+    const div = document.createElement("div");
+    div.textContent = "You lost!";
+    div.setAttribute("style", "background-color: red; color: white; text-align: center; padding: 8px; font-weight: 900; font-size: 24px;");
+    document.body.appendChild(div);
+}
+
 function winCheck(userInput, computerChoice) {
     switch (userInput.toLowerCase()){
         case "rock":
@@ -80,20 +107,23 @@ function randChoice() {
 rock.addEventListener("click", function() {
     let cpu = randChoice();
     let result = winCheck("rock", cpu);
-    updateScoreboard(result)
-    updateImage("rock", cpu)
+    updateScoreboard(result);
+    updateImage("rock", cpu);
+    checkEndGame(playerScore, computerScore)    
 });
 paper.addEventListener("click", function() {
     let cpu = randChoice();
     let result = winCheck("paper", cpu);
     updateScoreboard(result)
     updateImage("paper", cpu)
+    checkEndGame(playerScore, computerScore)
 });
 scissors.addEventListener("click", function() {
     let cpu = randChoice();
     let result = winCheck("scissors", cpu);
     updateScoreboard(result)
     updateImage("scissors", cpu)
+    checkEndGame(playerScore, computerScore)
 });
 
 
