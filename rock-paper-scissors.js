@@ -1,9 +1,9 @@
 let playerScore = 0;
 let computerScore = 0;
 
-const rock = document.querySelector("#rock")
-const paper = document.querySelector("#paper")
-const scissors = document.querySelector("#scissors")
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
 
 function updateScoreboard(result) {
     const userScoreDiv = document.querySelector(".player-score");
@@ -14,7 +14,12 @@ function updateScoreboard(result) {
     computerScoreDiv.textContent = "CPU score 😡: " + computerScore;
 }
 
-
+function updateImage(playerType, computerType) {
+    const playerImage = document.querySelector("#player-image");
+    const computerImage = document.querySelector("#computer-image");
+    playerImage.src = `static/${playerType}.png`;
+    computerImage.src = `static/${computerType}.png`;
+}
 
 function winCheck(userInput, computerChoice) {
     switch (userInput.toLowerCase()){
@@ -73,39 +78,22 @@ function randChoice() {
 }
 
 rock.addEventListener("click", function() {
-    const div = document.createElement("div");
     let cpu = randChoice();
     let result = winCheck("rock", cpu);
-    div.textContent = `You ${result}`;
-    document.body.appendChild(div);
     updateScoreboard(result)
+    updateImage("rock", cpu)
 });
 paper.addEventListener("click", function() {
-    const div = document.createElement("div");
     let cpu = randChoice();
     let result = winCheck("paper", cpu);
-    div.textContent = `You ${result}`;
-    document.body.appendChild(div);
     updateScoreboard(result)
+    updateImage("paper", cpu)
 });
 scissors.addEventListener("click", function() {
-    const div = document.createElement("div");
     let cpu = randChoice();
     let result = winCheck("scissors", cpu);
-    div.textContent = `You ${result}`;
-    document.body.appendChild(div);
     updateScoreboard(result)
+    updateImage("scissors", cpu)
 });
-
-// console.log("Play rock, paper, scissors!");
-// let gamesAmount = parseInt(prompt("How many games you want to play? ", "0"));
-// for (let i = 0; i < gamesAmount; i++){
-//     let userInput = prompt("Pick one: ", "");
-//     let computerInput = randChoice();
-//     console.log("Computer: " + computerInput);
-//     winCheck(userInput, computerInput);
-//     console.log(`Player score: ${playerScore}`)
-//     console.log(`Computer score: ${computerScore}`)
-// }
 
 

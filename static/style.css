@@ -24,6 +24,27 @@ h1 {
     font-weight: 700;
 }
 
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    gap: 30px;
+}
+
+.display-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.display-image {
+    width: 150px;
+    height: 150px;
+}
+
 .player {
     display: flex;
     justify-content: center;
