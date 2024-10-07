@@ -1,51 +1,47 @@
 let playerScore = 0;
 let computerScore = 0;
 
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissors = document.querySelector("#scissors")
+
+
 function winCheck(userInput, computerChoice) {
     switch (userInput.toLowerCase()){
         case "rock":
             switch (computerChoice){
                 case 'rock':
-                    console.log("You tied");
-                    break;
+                    return "tie";
                 case 'paper':
-                    console.log("You lost!");
                     computerScore++;
-                    break;
+                    return "won";
                 case 'scissors':
-                    console.log("You won!");
                     playerScore++;
-                    break;
+                    return "won";
             }
             break;
         case "paper":
             switch (computerChoice){
                 case 'rock':
-                    console.log("You won");
                     playerScore++;
-                    break;
+                    return "won";
                 case 'paper':
-                    console.log("You tied!");
-                    break;
+                    return "tie";
                 case 'scissors':
-                    console.log("You lost!");
                     computerScore++;
-                    break;
+                    return "lost";
             }
             break;
         case "scissors":
             switch (computerChoice){
                 case 'rock':
-                    console.log("You lost");
                     computerScore++;
-                    break;
+                    return "lost";
                 case 'paper':
-                    console.log("You won!");
                     playerScore++;
-                    break;
+                    return "won";
                 case 'scissors':
-                    console.log("You tied!");
-                    break;
+                    return "tie";
             }
             break;
         default:
@@ -66,15 +62,27 @@ function randChoice() {
     }
 }
 
-console.log("Play rock, paper, scissors!");
-let gamesAmount = parseInt(prompt("How many games you want to play? ", "0"));
-for (let i = 0; i < gamesAmount; i++){
-    let userInput = prompt("Pick one: ", "");
-    let computerInput = randChoice();
-    console.log("Computer: " + computerInput);
-    winCheck(userInput, computerInput);
-    console.log(`Player score: ${playerScore}`)
-    console.log(`Computer score: ${computerScore}`)
-}
+rock.addEventListener("click", function() {
+    console.log("test rock")
+    const p = document.createElement("p");
+    let cpu = randChoice();
+    let result = winCheck("rock", cpu);
+    p.text = `You ${result}`;
+    document.body.appendChild(p);
+});
+// paper.addEventListener("click", winCheck("paper", randChoice()));
+// scissors.addEventListener("click", winCheck("scissors", randChoice()));
+
+
+// console.log("Play rock, paper, scissors!");
+// let gamesAmount = parseInt(prompt("How many games you want to play? ", "0"));
+// for (let i = 0; i < gamesAmount; i++){
+//     let userInput = prompt("Pick one: ", "");
+//     let computerInput = randChoice();
+//     console.log("Computer: " + computerInput);
+//     winCheck(userInput, computerInput);
+//     console.log(`Player score: ${playerScore}`)
+//     console.log(`Computer score: ${computerScore}`)
+// }
 
 
