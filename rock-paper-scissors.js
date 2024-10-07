@@ -5,6 +5,16 @@ const rock = document.querySelector("#rock")
 const paper = document.querySelector("#paper")
 const scissors = document.querySelector("#scissors")
 
+function updateScoreboard(result) {
+    const userScoreDiv = document.querySelector(".player-score");
+    const computerScoreDiv = document.querySelector(".computer-score");
+    const resultDiv = document.querySelector(".result");
+    userScoreDiv.textContent = "Your score 😇: " + playerScore;
+    resultDiv.textContent = "You " + result + "!"
+    computerScoreDiv.textContent = "CPU score 😡: " + computerScore;
+}
+
+
 
 function winCheck(userInput, computerChoice) {
     switch (userInput.toLowerCase()){
@@ -14,7 +24,7 @@ function winCheck(userInput, computerChoice) {
                     return "tie";
                 case 'paper':
                     computerScore++;
-                    return "won";
+                    return "lost";
                 case 'scissors':
                     playerScore++;
                     return "won";
@@ -63,16 +73,29 @@ function randChoice() {
 }
 
 rock.addEventListener("click", function() {
-    console.log("test rock")
-    const p = document.createElement("p");
+    const div = document.createElement("div");
     let cpu = randChoice();
     let result = winCheck("rock", cpu);
-    p.text = `You ${result}`;
-    document.body.appendChild(p);
+    div.textContent = `You ${result}`;
+    document.body.appendChild(div);
+    updateScoreboard(result)
 });
-// paper.addEventListener("click", winCheck("paper", randChoice()));
-// scissors.addEventListener("click", winCheck("scissors", randChoice()));
-
+paper.addEventListener("click", function() {
+    const div = document.createElement("div");
+    let cpu = randChoice();
+    let result = winCheck("paper", cpu);
+    div.textContent = `You ${result}`;
+    document.body.appendChild(div);
+    updateScoreboard(result)
+});
+scissors.addEventListener("click", function() {
+    const div = document.createElement("div");
+    let cpu = randChoice();
+    let result = winCheck("scissors", cpu);
+    div.textContent = `You ${result}`;
+    document.body.appendChild(div);
+    updateScoreboard(result)
+});
 
 // console.log("Play rock, paper, scissors!");
 // let gamesAmount = parseInt(prompt("How many games you want to play? ", "0"));
